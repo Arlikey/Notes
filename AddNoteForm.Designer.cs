@@ -34,6 +34,9 @@
             noteDescriptionLabel = new MaterialSkin.Controls.MaterialLabel();
             noteTitleTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             noteDescriptionTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            warnLabel = new Label();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // refreshNoteButton
@@ -41,12 +44,13 @@
             refreshNoteButton.BackgroundImage = Properties.Resources.free_icon_refresh_2805355;
             refreshNoteButton.BackgroundImageLayout = ImageLayout.Zoom;
             refreshNoteButton.Cursor = Cursors.Hand;
+            refreshNoteButton.Dock = DockStyle.Right;
             refreshNoteButton.FlatAppearance.BorderSize = 0;
             refreshNoteButton.FlatAppearance.MouseOverBackColor = Color.LightGray;
             refreshNoteButton.FlatStyle = FlatStyle.Flat;
-            refreshNoteButton.Location = new Point(505, 334);
+            refreshNoteButton.Location = new Point(481, 0);
             refreshNoteButton.Name = "refreshNoteButton";
-            refreshNoteButton.Size = new Size(58, 51);
+            refreshNoteButton.Size = new Size(58, 65);
             refreshNoteButton.TabIndex = 3;
             refreshNoteButton.UseVisualStyleBackColor = true;
             refreshNoteButton.Click += refreshNoteButton_Click;
@@ -56,11 +60,12 @@
             applyNoteButton.BackgroundImage = Properties.Resources.free_icon_plus_3303893;
             applyNoteButton.BackgroundImageLayout = ImageLayout.Zoom;
             applyNoteButton.Cursor = Cursors.Hand;
+            applyNoteButton.Dock = DockStyle.Left;
             applyNoteButton.FlatAppearance.BorderSize = 0;
             applyNoteButton.FlatStyle = FlatStyle.Flat;
-            applyNoteButton.Location = new Point(14, 334);
+            applyNoteButton.Location = new Point(30, 0);
             applyNoteButton.Name = "applyNoteButton";
-            applyNoteButton.Size = new Size(58, 51);
+            applyNoteButton.Size = new Size(58, 65);
             applyNoteButton.TabIndex = 2;
             applyNoteButton.UseVisualStyleBackColor = true;
             applyNoteButton.Click += applyNoteButton_Click;
@@ -119,21 +124,48 @@
             noteDescriptionTextBox.TabIndex = 5;
             noteDescriptionTextBox.Text = "";
             // 
+            // warnLabel
+            // 
+            warnLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            warnLabel.AutoSize = true;
+            warnLabel.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            warnLabel.ForeColor = Color.Red;
+            warnLabel.Location = new Point(106, 21);
+            warnLabel.Name = "warnLabel";
+            warnLabel.Size = new Size(144, 20);
+            warnLabel.TabIndex = 6;
+            warnLabel.Text = "Укажите название!";
+            warnLabel.Visible = false;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(applyNoteButton);
+            panel1.Controls.Add(warnLabel);
+            panel1.Controls.Add(refreshNoteButton);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(3, 330);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(30, 0, 30, 0);
+            panel1.Size = new Size(569, 65);
+            panel1.TabIndex = 7;
+            // 
             // AddNoteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(575, 398);
+            Controls.Add(panel1);
             Controls.Add(noteDescriptionTextBox);
             Controls.Add(noteTitleTextBox);
             Controls.Add(noteDescriptionLabel);
             Controls.Add(noteTitleLabel);
-            Controls.Add(refreshNoteButton);
-            Controls.Add(applyNoteButton);
             MaximizeBox = false;
+            MinimumSize = new Size(575, 398);
             Name = "AddNoteForm";
             Text = "Добавление заметки";
             FormClosing += AddNoteForm_FormClosing;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -146,5 +178,7 @@
         private MaterialSkin.Controls.MaterialLabel noteDescriptionLabel;
         private MaterialSkin.Controls.MaterialMultiLineTextBox noteTitleTextBox;
         private MaterialSkin.Controls.MaterialMultiLineTextBox noteDescriptionTextBox;
+        private Label warnLabel;
+        private Panel panel1;
     }
 }
